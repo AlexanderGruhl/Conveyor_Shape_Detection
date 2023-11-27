@@ -6,7 +6,7 @@ def nothing(x):
     # any operation
     pass
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 deformed = 0
 n_deformed = 0
@@ -56,11 +56,11 @@ while True:
         if area > 400:
             cv2.drawContours(frame, [approx], 0, (0, 0, 0), 5)
 
-            if 10 < len(approx) < 20:
-                cv2.putText(frame, "Circle", (x, y), font, 1, (0, 0, 0))
-                deformed = deformed + 1
-            elif len(approx) == 3:
+            if len(approx) == 3:
                 cv2.putText(frame, "Triangle", (x, y), font, 1, (0, 0, 0))
+                deformed = deformed + 1
+            elif 10 < len(approx) < 20:
+                cv2.putText(frame, "Circle", (x, y), font, 1, (0, 0, 0))
                 n_deformed = n_deformed + 1
             #elif len(approx) == 4:
                 #cv2.putText(frame, "Rectangle", (x, y), font, 1, (0, 0, 0))
